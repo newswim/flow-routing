@@ -12,11 +12,11 @@ Assuming you have a main layout that looks like this:
 
 ```handlebars
 <template name="myLayout">
-  
+
   <div class="nav">
     {{> Template.dynamic template=nav}}
   </div>
-  
+
   <div class="content">
     {{> Template.dynamic template=main}}
   </div>
@@ -24,7 +24,7 @@ Assuming you have a main layout that looks like this:
   <footer>
     {{> Template.dynamic template=footer}}
   </footer>
-  
+
 </template>
 ```
 
@@ -52,7 +52,7 @@ AccountsTemplates.configure({
 });
 ```
 
-Useraccounts:flow-routing uses the internal useraccounts 
+Useraccounts:flow-routing uses the internal useraccounts
 
 ```fullPageAtForm``` is the built-in template useraccounts uses by default for its forms. You can override it on a per-route basis (see below) or replace it with ```defaultTemplate:``` field as above (templates specified in route config will still take precedence).  Omit ```defaultTemplate``` (or set to an empty string) to use the ```fullPageAtForm``` template built-in to your useraccounts UI package (ex [material](https://github.com/meteor-useraccounts/materialize/blob/master/lib/full_page_at_form.html)).
 
@@ -62,7 +62,7 @@ NOTE: The above configs must load BEFORE your AccountsTemplates routes are defin
 
 There are no routes provided by default, but you can easily configure routes for sign in, sign up, forgot password, reset password, change password, enroll account using `AccountsTemplates.configureRoute`.  
 
-The simplest way is to make the call passing in only a route code (available route codes are: signIn, signUp, changePwd, forgotPwd, resetPwd, enrollAccount). 
+The simplest way is to make the call passing in only a route code (available route codes are: signIn, signUp, changePwd, forgotPwd, resetPwd, enrollAccount).
 
 This will set up the sign in route with a full-page form:
 
@@ -92,7 +92,7 @@ AccountsTemplates.configureRoute('signIn', {
 });
 ```
 
-All options are passed to FlowRouter.route() which then creates a new custom route (see the official Flow Router documentation [here](https://atmospherejs.com/kadira/flow-router) for more details).  All the above fields are optional and fall back to default values in case you don't provide them. 
+All options are passed to FlowRouter.route() which then creates a new custom route (see the official Flow Router documentation [here](https://atmospherejs.com/kadira/flow-router) for more details).  All the above fields are optional and fall back to default values in case you don't provide them.
 
 ## Content Protection
 
@@ -102,7 +102,8 @@ If you want to protect a route by making sure a user is signed in, you can add t
 FlowRouter.route('/private', {
   triggersEnter: [AccountsTemplates.ensureSignedIn],
   action: function() {
-    BlazeLayout.render(...)
+      // this has been altered, originally BlazeLayout
+    Layout.render(...)
   }
 });
 ```
